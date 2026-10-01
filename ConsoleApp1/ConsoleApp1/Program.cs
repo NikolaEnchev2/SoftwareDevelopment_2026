@@ -31,6 +31,8 @@ namespace ConsoleApp1
 
         static void Main()
         {
+
+            Console.WriteLine("promqna");
             while (true)
             {
                 Console.Clear();
@@ -208,6 +210,8 @@ namespace ConsoleApp1
             Console.WriteLine("\nНатиснете Enter за продължаване...");
             Console.ReadLine();
         }
+
+      
     }
 
 }
