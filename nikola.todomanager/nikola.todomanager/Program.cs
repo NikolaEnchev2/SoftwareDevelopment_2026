@@ -6,46 +6,10 @@ using System.Threading.Tasks;
 
 namespace nikola.todomanager
 {
-    internal class Program
-    { }
-
-
-namespace ConsoleApp1
-    {
-        using System;
-        using System.Collections.Generic;
-
-        class TaskItem
-        {
-            public int ID { get; set; }
-            public string Title { get; set; }
-            public string Description { get; set; }
-            public DateTime Deadline { get; set; }
-            public bool IsCompleted { get; set; }
-
-            public TaskItem(int id ,string title, string description, DateTime deadline)
-            {
-                if(id <= 0)
-                {
-                    throw new ArgumentOutOfRangeException("Id трябва да е положително число");
-                }
-                if (string.IsNullOrEmpty(title))
-                {
-                    throw new ArgumentNullException("Трябва заглавие");
-                }
-                ID = id;
-                Title = title;
-                Description = description;
-                Deadline = deadline;
-                IsCompleted = false;
-
-            }
-        }
+       
 
         class Program
         {
-            static List<TaskItem> tasks = new List<TaskItem>();
-            private static int nextID = 1;
             static void Main()
             {
 
@@ -122,9 +86,6 @@ namespace ConsoleApp1
 
                 try
                 {
-                    TaskItem task = new TaskItem(nextID, title, description, deadline);
-                    tasks.Add(task);
-                    nextID++;
                     Console.WriteLine("\nЗадачата беше добавена успешно!");
                    
                 }
@@ -170,29 +131,34 @@ namespace ConsoleApp1
                 Console.Clear();
                 Console.WriteLine("===== МАРКИРАНЕ КАТО ИЗПЪЛНЕНА =====");
 
-                if (tasks.Count == 0)
-                {
-                    Console.WriteLine("Няма въведени задачи.");
-                    Pause();
-                    return;
-                }
+                //if (tasks.Count == 0)
+                //{
+                //    Console.WriteLine("Няма въведени задачи.");
+                //    Pause();
+                //    return;
+                //}
 
                 ShowTaskTitles();
 
                 Console.Write("Въведи номер на задачата: ");
 
-                if (int.TryParse(Console.ReadLine(), out int number) &&
-                    number >= 1 && number <= tasks.Count)
-                {
-                    tasks[number - 1].IsCompleted = true;
-                    Console.WriteLine("Задачата е маркирана като изпълнена.");
-                }
-                else
+                while (!int.TryParse(Console.ReadLine(), out int number))
                 {
                     Console.WriteLine("Невалиден номер на задача.");
+                    Console.WriteLine("Избери номер:");
                 }
+                //&&
+                //    number >= 1 && number <= tasks.Count)
+                //{
+                //    tasks[number - 1].IsCompleted = true;
+                    Console.WriteLine("Задачата е маркирана като изпълнена.");
+                //}
+                //else
+                //{
+                    //Console.WriteLine("Невалиден номер на задача.");
+                //}
 
-                Pause();
+                //Pause();
             }
 
             static void DeleteTask()
@@ -239,8 +205,9 @@ namespace ConsoleApp1
                 Console.ReadLine();
             }
 
+            
 
         }
 
-    }
+    
 }
